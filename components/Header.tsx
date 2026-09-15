@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from "react"; 
 import { useRouter, usePathname } from "next/navigation"; 
 import Image from "next/image";
@@ -6,6 +7,11 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
 export default function Header() {
+  const pathname = usePathname();
+
+const isStudioPage =
+  pathname === '/studio' ||
+  pathname.startsWith('/studio/');	
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const [searchQuery, setSearchQuery] = useState(""); 
   const [user, setUser] = useState<any>(null);
@@ -107,7 +113,7 @@ export default function Header() {
         }
       `}} />
 
-      {/* =========================================================
+     {/* =========================================================
     LAPIS 1: TOPBAR
 ========================================================= */}
 <div
@@ -255,6 +261,7 @@ export default function Header() {
             strokeLinejoin="round"
           >
             <circle cx="11" cy="11" r="8" />
+
             <line
               x1="21"
               y1="21"
@@ -267,7 +274,7 @@ export default function Header() {
     </div>
 
     {/* =====================================================
-        DONASI + LOGIN / LOGOUT SANITY
+        DONASI + LOGIN / LOGOUT
     ===================================================== */}
     <div
       className="top-right-group"
@@ -304,12 +311,29 @@ export default function Header() {
       {/* ===================================================
           LOGIN / LOGOUT SANITY
       =================================================== */}
-
-      {isSanityLoggedIn ? (
+      {isStudioPage ? (
         <button
           type="button"
-          onClick={handleSanityLogout}
-          disabled={isSanityLoggingOut}
+          onClick={() => {
+            /*
+             * Sanity Studio menyimpan token autentikasi
+             * menggunakan key __studio_auth_token_...
+             *
+             * Kita hapus token tersebut lalu refresh Studio.
+             */
+
+            if (typeof window !== 'undefined') {
+              const keys = Object.keys(window.localStorage);
+
+              keys.forEach((key) => {
+                if (key.startsWith('__studio_auth_token_')) {
+                  window.localStorage.removeItem(key);
+                }
+              });
+
+              window.location.href = '/studio';
+            }
+          }}
           aria-label="Logout dari Sanity Studio"
           style={{
             backgroundColor: '#ef4444',
@@ -319,16 +343,14 @@ export default function Header() {
             borderRadius: '20px',
             fontSize: '11px',
             fontWeight: 800,
-            cursor: isSanityLoggingOut ? 'wait' : 'pointer',
+            cursor: 'pointer',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
             whiteSpace: 'nowrap',
-            opacity: isSanityLoggingOut ? 0.7 : 1,
-            transition: 'all 0.2s ease',
           }}
         >
-          {isSanityLoggingOut ? 'KELUAR...' : 'LOGOUT'}
+          LOGOUT
         </button>
       ) : (
         <a
@@ -346,7 +368,6 @@ export default function Header() {
             alignItems: 'center',
             justifyContent: 'center',
             whiteSpace: 'nowrap',
-            transition: 'all 0.2s ease',
           }}
         >
           LOGIN
