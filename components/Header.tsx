@@ -255,14 +255,19 @@ export default function Header() {
             strokeLinejoin="round"
           >
             <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            <line
+              x1="21"
+              y1="21"
+              x2="16.65"
+              y2="16.65"
+            />
           </svg>
         </button>
       </form>
     </div>
 
     {/* =====================================================
-        DONASI + LOGIN / LOGOUT
+        DONASI + LOGIN / LOGOUT SANITY
     ===================================================== */}
     <div
       className="top-right-group"
@@ -274,7 +279,9 @@ export default function Header() {
         justifyContent: 'flex-end',
       }}
     >
-      {/* TOMBOL DONASI */}
+      {/* ===================================================
+          TOMBOL DONASI
+      =================================================== */}
       <a
         href="https://mukhlasin.or.id"
         style={{
@@ -294,11 +301,16 @@ export default function Header() {
         DONASI
       </a>
 
-      {/* TOMBOL LOGIN / LOGOUT */}
-      {user ? (
+      {/* ===================================================
+          LOGIN / LOGOUT SANITY
+      =================================================== */}
+
+      {isSanityLoggedIn ? (
         <button
           type="button"
-          onClick={handleAuthAction}
+          onClick={handleSanityLogout}
+          disabled={isSanityLoggingOut}
+          aria-label="Logout dari Sanity Studio"
           style={{
             backgroundColor: '#ef4444',
             color: '#fff',
@@ -307,18 +319,21 @@ export default function Header() {
             borderRadius: '20px',
             fontSize: '11px',
             fontWeight: 800,
-            cursor: 'pointer',
+            cursor: isSanityLoggingOut ? 'wait' : 'pointer',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
             whiteSpace: 'nowrap',
+            opacity: isSanityLoggingOut ? 0.7 : 1,
+            transition: 'all 0.2s ease',
           }}
         >
-          LOGOUT
+          {isSanityLoggingOut ? 'KELUAR...' : 'LOGOUT'}
         </button>
       ) : (
         <a
-          href="https://daruttaqwabanyumas.com/studio"
+          href="/studio"
+          aria-label="Login ke Sanity Studio"
           style={{
             backgroundColor: 'var(--dt-gold)',
             color: '#1e2f65',
@@ -331,6 +346,7 @@ export default function Header() {
             alignItems: 'center',
             justifyContent: 'center',
             whiteSpace: 'nowrap',
+            transition: 'all 0.2s ease',
           }}
         >
           LOGIN
