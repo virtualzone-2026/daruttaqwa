@@ -107,34 +107,238 @@ export default function Header() {
         }
       `}} />
 
-      {/* LAPIS 1: TOPBAR */}
-      <div className="top-bar" style={{ backgroundColor: '#f8f9fa', borderBottom: '1px solid #eee', padding: '6px 0' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto', padding: '0 15px' }}>
-          <div style={{ flex: 1 }}>
-            <div onClick={() => setIsMenuOpen(true)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', cursor: 'pointer', width: '25px' }}>
-              <span style={{ width: '100%', height: '3px', backgroundColor: 'var(--dt-blue)', borderRadius: '2px' }}></span>
-              <span style={{ width: '100%', height: '3px', backgroundColor: 'var(--dt-blue)', borderRadius: '2px' }}></span>
-              <span style={{ width: '100%', height: '3px', backgroundColor: 'var(--dt-blue)', borderRadius: '2px' }}></span>
-            </div>
-          </div>
+      {/* =========================================================
+    LAPIS 1: TOPBAR
+========================================================= */}
+<div
+  className="top-bar"
+  style={{
+    backgroundColor: '#f8f9fa',
+    borderBottom: '1px solid #eee',
+    padding: '6px 0',
+  }}
+>
+  <div
+    className="container"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '0 15px',
+    }}
+  >
+    {/* =====================================================
+        MENU HAMBURGER
+    ===================================================== */}
+    <div
+      style={{
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setIsMenuOpen(true)}
+        aria-label="Buka menu"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: '4px',
+          cursor: 'pointer',
+          width: '25px',
+          padding: 0,
+          margin: 0,
+          border: 'none',
+          background: 'transparent',
+        }}
+      >
+        <span
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '3px',
+            backgroundColor: 'var(--dt-blue)',
+            borderRadius: '2px',
+          }}
+        />
 
-          <div className="top-center-search" style={{ flex: 2, display: 'flex', justifyContent: 'center' }}>
-            <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '30px', padding: '2px 2px 2px 15px', backgroundColor: '#fff', width: '100%', maxWidth: '400px' }}>
-              <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Cari berita atau program..." style={{ border: 'none', outline: 'none', width: '100%', fontSize: '13px', color: '#333' }} />
-              <button type="submit" style={{ backgroundColor: 'var(--dt-blue)', border: 'none', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              </button>
-            </form>
-          </div>
+        <span
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '3px',
+            backgroundColor: 'var(--dt-blue)',
+            borderRadius: '2px',
+          }}
+        />
 
-          <div className="top-right-group" style={{ flex: 1, display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-            <Link href="/donasi" style={{ backgroundColor: 'var(--dt-blue)', color: '#fff', padding: '6px 15px', borderRadius: '20px', fontSize: '11px', fontWeight: '800', textDecoration: 'none' }}>DONASI</Link>
-            <button onClick={handleAuthAction} style={{ backgroundColor: user ? '#ef4444' : 'var(--dt-gold)', color: user ? '#fff' : '#1e2f65', border: 'none', padding: '6px 15px', borderRadius: '20px', fontSize: '11px', fontWeight: '800', cursor: 'pointer' }}>
-              {user ? 'LOGOUT' : 'LOGIN'}
-            </button>
-          </div>
-        </div>
-      </div>
+        <span
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '3px',
+            backgroundColor: 'var(--dt-blue)',
+            borderRadius: '2px',
+          }}
+        />
+      </button>
+    </div>
+
+    {/* =====================================================
+        SEARCH
+    ===================================================== */}
+    <div
+      className="top-center-search"
+      style={{
+        flex: 2,
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <form
+        onSubmit={handleSearch}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          border: '1px solid #ddd',
+          borderRadius: '30px',
+          padding: '2px 2px 2px 15px',
+          backgroundColor: '#fff',
+          width: '100%',
+          maxWidth: '400px',
+        }}
+      >
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Cari berita atau program..."
+          aria-label="Cari berita atau program"
+          style={{
+            border: 'none',
+            outline: 'none',
+            width: '100%',
+            fontSize: '13px',
+            color: '#333',
+            backgroundColor: 'transparent',
+          }}
+        />
+
+        <button
+          type="submit"
+          aria-label="Cari"
+          style={{
+            flexShrink: 0,
+            backgroundColor: 'var(--dt-blue)',
+            border: 'none',
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    {/* =====================================================
+        DONASI + LOGIN / LOGOUT
+    ===================================================== */}
+    <div
+      className="top-right-group"
+      style={{
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        justifyContent: 'flex-end',
+      }}
+    >
+      {/* TOMBOL DONASI */}
+      <a
+        href="https://mukhlasin.or.id"
+        style={{
+          backgroundColor: 'var(--dt-blue)',
+          color: '#fff',
+          padding: '6px 15px',
+          borderRadius: '20px',
+          fontSize: '11px',
+          fontWeight: 800,
+          textDecoration: 'none',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        DONASI
+      </a>
+
+      {/* TOMBOL LOGIN / LOGOUT */}
+      {user ? (
+        <button
+          type="button"
+          onClick={handleAuthAction}
+          style={{
+            backgroundColor: '#ef4444',
+            color: '#fff',
+            border: 'none',
+            padding: '6px 15px',
+            borderRadius: '20px',
+            fontSize: '11px',
+            fontWeight: 800,
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          LOGOUT
+        </button>
+      ) : (
+        <a
+          href="https://daruttaqwabanyumas.com/studio"
+          style={{
+            backgroundColor: 'var(--dt-gold)',
+            color: '#1e2f65',
+            padding: '6px 15px',
+            borderRadius: '20px',
+            fontSize: '11px',
+            fontWeight: 800,
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          LOGIN
+        </a>
+      )}
+    </div>
+  </div>
+</div>
 
       {/* LAPIS 2: LOGO SECTION (IDENTITAS) */}
       <div className="logo-section" style={{ backgroundColor: '#fff', padding: '15px 0' }}>
