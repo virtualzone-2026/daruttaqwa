@@ -51,7 +51,7 @@ export default function Header() {
 	{ name: "Pendaftaran Online", slug: "pendaftaran-online" },
     { name: "Video", slug: "video" },
     { name: "Tokoh & Inspirasi", slug: "tokoh-inspirasi" },
-    { name: "Unduhan", slug: "unduhan" },
+    { name: "Download", slug: "download" },
   ];
 
   const subMenus = [
