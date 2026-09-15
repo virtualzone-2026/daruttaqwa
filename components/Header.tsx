@@ -48,7 +48,7 @@ export default function Header() {
     { name: "program", slug: "program" },
     { name: "Unit KMI", slug: "unit-kmi" },
     { name: "Unit SMP", slug: "unit-smp" },
-	{ name: "Pendaftaran Online", slug: "pendaftaran-online" },
+	{ name: "Pendaftaran Online", slug: "pendaftaran" },
     { name: "Video", slug: "video" },
     { name: "Tokoh & Inspirasi", slug: "tokoh-inspirasi" },
     { name: "Download", slug: "download" },
